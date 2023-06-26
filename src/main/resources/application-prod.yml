@@ -1,0 +1,23 @@
+## APP CONFIG
+application:
+  title: Registration API (PROD) =>
+
+## SPRING CONFIG
+spring:
+  sql:
+    init:
+      mode: never
+
+## ACTUATOR CONFIG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+
+## SPRING DOCS CONFIG
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false

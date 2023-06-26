@@ -1,0 +1,44 @@
+## SERVER CONFIG
+server:
+  port: 9090
+
+## APP CONFIG - CUSTOM
+application:
+  title: Registration API
+  version: @project.version@ # FROM pom.xml
+
+## SPRING CONFIG
+spring:
+  profiles:
+    active: dev
+  ##### command flag = -Dspring.profiles.active=dev
+
+  ## DB CONFIG
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/registration_db}
+    username: ${DB_USER:root}
+    password: ${DB_PASS:pass}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+  ## FLYWAY CONFIG
+  flyway:
+    # locations: classpath:db/migration (default)
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+
+## LOGGING CONFIG
+logging:
+  level:
+    root: INFO
+  file:
+    name: log/registration_api.log
+  logback:
+    rollingpolicy:
+      max-history: 30
+      max-file-size: 1GB
+      total-size-cap: 30GB
